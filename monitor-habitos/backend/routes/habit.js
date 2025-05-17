@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const habitController = require("../controllers/habitController");
-const auth = require("../middleware/auth");
+const habitController = require("../controllers/habitcontrollers");
+const auth = require("../middleware/middleware/auth");
 
 router.post("/habitos", auth, habitController.criarHabito);
 router.get("/habitos", auth, habitController.listarHabitos);
