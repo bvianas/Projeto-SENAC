@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Tracker</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <!-- ───── Headline fora do container ───── -->
+  <header class="page-header">
+    <h1>Monitoramento de Hábitos</h1>
+    <blockquote>
+      Construa a sua rotina, um hábito por vez.
+    </blockquote>
+  </header>
+
+  <div class="wrapper">
+    <!-- ─── Coluna 1 • Sidebar de hábitos ─── -->
+    <aside>
+      <div class="reminder">
+        <label for="reminderTime">⏰ Daily reminder</label>
+        <input type="time" id="reminderTime" />
+        <button id="setReminder">Save</button>
+      </div>
+
+      <h4>Habits</h4>
+      <ul id="habitList"></ul>
+
+      <div class="add-habit">
+        <input id="newHabit" type="text" placeholder="New habit…" />
+        <button id="addHabit">Add</button>
+      </div>
+
+   </aside>
+
+    <!-- ─── Coluna 2 • Conteúdo principal ─── -->
+    <main>
+      <div class="controls">
+        <label>📅 Month:
+          <input type="month" id="monthPicker" />
+        </label>
+        <button id="shareBtn">Share progress</button>
+        <div class="points">⭐ Points: <span id="points">0</span></div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="month-title" id="monthTitle">January</div>
+        <table id="habitTable">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- ─── Coluna 3 • Progresso semanal / mensal ─── -->
+    <aside class="stats-col">
+      <section class="stats">
+        <h3>Visualização do progresso</h3>
+
+        <div class="progress-summary">
+          <div class="summary-row">
+            <span>Semana</span>
+            <div class="bar"><span id="weeklyBar"></span></div>
+            <span class="pct" id="weeklyPct">0%</span>
+          </div>
+          <div class="summary-row">
+            <span>Mês</span>
+            <div class="bar"><span id="monthlyBar"></span></div>
+            <span class="pct" id="monthlyPct">0%</span>
+          </div>
+        </div>
+
+        <article id="weeklyReport"></article>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Script principal -->
+  <script src="script/dashboard.js"></script>
+</body>
+</html>
