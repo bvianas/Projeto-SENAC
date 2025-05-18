@@ -1,21 +1,40 @@
-const express = require("express");
+const express  = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+const cors     = require("cors");
 require("dotenv").config();
 
-const userRoutes = require("./routes/user");
+const userRoutes  = require("./routes/user");
 const habitRoutes = require("./routes/habit");
 
 const app = express();
-app.use(cors());
+
+/* ───────── CORS – permite o front local ───────── */
+const allowedOrigins = [
+  "http://localhost:5500",
+  "http://127.0.0.1:5500"
+];
+app.use(
+  cors({
+    origin(origin, cb) {
+      // permite Postman (sem Origin) ou origens da lista
+      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+      cb(new Error("Not allowed by CORS"));
+    },
+    credentials: true
+  })
+);
+
+/* ───────── Middlewares ───────── */
 app.use(express.json());
 
-// IMPORTANTE: essas duas linhas devem estar aqui
+/* ───────── Rotas ───────── */
 app.use(userRoutes);
 app.use(habitRoutes);
 
-mongoose.connect(process.env.MONGO_URI)
+/* ───────── Mongo / Server ───────── */
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB conectado"))
-  .catch(err => console.log("Erro ao conectar ao MongoDB", err));
+  .catch(err => console.error("Erro ao conectar ao MongoDB", err));
 
 app.listen(3001, () => console.log("Servidor rodando na porta 3001"));

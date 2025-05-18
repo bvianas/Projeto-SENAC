@@ -34,12 +34,55 @@ exports.concluirHabito = async (req, res) => {
       return res.status(404).json({ erro: "Hábito não encontrado." });
     }
 
-    habito.diasConcluidos.push(new Date());
+    const data = new Date(req.body.data);
+    const dataFormatada = data.toISOString().slice(0, 10);
+
+    if (req.method === "PUT") {
+      const jaConcluido = habito.diasConcluidos.some(
+        (d) => new Date(d).toISOString().slice(0, 10) === dataFormatada
+      );
+      if (!jaConcluido) {
+        habito.diasConcluidos.push(data);
+      }
+    }
+
+    if (req.method === "DELETE") {
+      habito.diasConcluidos = habito.diasConcluidos.filter(
+        (d) => new Date(d).toISOString().slice(0, 10) !== dataFormatada
+      );
+    }
+
     await habito.save();
     res.json(habito);
   } catch (err) {
     console.error("Erro ao concluir hábito:", err);
     res.status(500).json({ erro: "Erro ao concluir hábito." });
+  }
+};
+
+
+exports.desmarcarHabito = async (req, res) => {
+  try {
+    const habito = await Habit.findOne({
+      _id: req.params.id,
+      usuario: req.userId,
+    });
+
+    if (!habito) {
+      return res.status(404).json({ erro: "Hábito não encontrado." });
+    }
+
+    const dataFormatada = new Date(req.body.data).toISOString().slice(0, 10);
+
+    habito.diasConcluidos = habito.diasConcluidos.filter(
+      (d) => new Date(d).toISOString().slice(0, 10) !== dataFormatada
+    );
+
+    await habito.save();
+    res.json(habito);
+  } catch (err) {
+    console.error("Erro ao desmarcar hábito:", err);
+    res.status(500).json({ erro: "Erro ao desmarcar hábito." });
   }
 };
 
@@ -54,5 +97,34 @@ exports.progresso = async (req, res) => {
   } catch (err) {
     console.error("Erro ao gerar progresso:", err);
     res.status(500).json({ erro: "Erro ao obter progresso." });
+  }
+};
+
+exports.totalPontos = async (req, res) => {
+  try {
+    const habitos = await Habit.find({ usuario: req.userId });
+    const total = habitos.reduce((soma, hab) => soma + hab.diasConcluidos.length, 0);
+    res.json({ pontos: total });
+  } catch (err) {
+    console.error("Erro ao calcular pontos:", err);
+    res.status(500).json({ erro: "Erro ao calcular pontos." });
+  }
+};
+
+exports.deletarHabito = async (req, res) => {
+  try {
+    const habito = await Habit.findOneAndDelete({
+      _id: req.params.id,
+      usuario: req.userId
+    });
+
+    if (!habito) {
+      return res.status(404).json({ erro: "Hábito não encontrado." });
+    }
+
+    res.json({ mensagem: "Hábito deletado com sucesso." });
+  } catch (err) {
+    console.error("Erro ao deletar hábito:", err);
+    res.status(500).json({ erro: "Erro ao deletar hábito." });
   }
 };

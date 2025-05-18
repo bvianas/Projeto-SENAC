@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
       ref: "Habit",
     },
   ],
+  lembreteDiario: {
+    type: String,
+    default: ""
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);

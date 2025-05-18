@@ -46,3 +46,26 @@ exports.login = async (req, res) => {
     res.status(500).json({ erro: "Erro ao realizar login." });
   }
 };
+
+// Buscar lembrete diário
+exports.getLembrete = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    res.json({ lembrete: user.lembreteDiario });
+  } catch (err) {
+    console.error("Erro ao buscar lembrete:", err);
+    res.status(500).json({ erro: "Erro ao buscar lembrete." });
+  }
+};
+
+// Atualizar lembrete diário
+exports.setLembrete = async (req, res) => {
+  try {
+    const { lembrete } = req.body;
+    await User.findByIdAndUpdate(req.userId, { lembreteDiario: lembrete });
+    res.json({ mensagem: "Lembrete atualizado com sucesso." });
+  } catch (err) {
+    console.error("Erro ao atualizar lembrete:", err);
+    res.status(500).json({ erro: "Erro ao atualizar lembrete." });
+  }
+};
