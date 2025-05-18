@@ -8,7 +8,7 @@ O projeto busca oferecer uma solução para o acompanhamento diário de hábitos
 
 ## 🎯 Objetivo
 
-Desenvolver uma aplicação web com backend em Node.js que permita:
+Desenvolver uma aplicação web com frontend em HTML, CSS e JavaScript e backend em Node.js que permita:
 - Cadastro e gerenciamento de usuários
 - Cadastro de hábitos personalizados
 - Organização inicial da estrutura de backend e frontend
