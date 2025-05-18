@@ -1,6 +1,6 @@
-# 🧠 Plataforma de Monitoramento de Hábitos
+<img src="./frontend/src/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
 
-Este projeto visa o desenvolvimento de uma plataforma que auxilie os usuários no acompanhamento de hábitos saudáveis de forma simples, acessível e motivadora.
+
 
 ## 📌 Visão Geral
 
@@ -92,6 +92,13 @@ Servidor rodando em http://localhost:3000
 ```
 
 ## Referências 🛠️
+
+| Tópicos | Descrição |
+|--------|-----------|
+|[Commits](https://github.com/iuricode/padroes-de-commits) | Padrões de commits |
+|[README](https://blog.rocketseat.com.br/como-fazer-um-bom-readme/) | Como fazer um bom README |
+|[Postman](https://www.postman.com/) | Plataforma para teste de API |
+
 
 
 
