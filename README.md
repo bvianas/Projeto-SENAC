@@ -91,6 +91,10 @@ node server.js
 Servidor rodando em http://localhost:3000
 ```
 
+## Referências 🛠️
+
+
+
 ## Desenvolvido por: ✍️
 
  
