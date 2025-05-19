@@ -1,5 +1,4 @@
-<img src="./public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
-
+<img src="./monitor-habitos/backend/public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
 
 
 ## 📌 Visão Geral
