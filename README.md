@@ -28,21 +28,32 @@ Desenvolver uma aplicação web com frontend em HTML, CSS e JavaScript e backend
 ## 📁 Estrutura do Projeto
 
 ```bash
-Projeto-SENAC/
-├── monitor-habitos/               # Diretório principal do projeto
-│   ├── backend/                   # Backend da aplicação
-│   │   ├── controllers/           # Controladores das rotas
-│   │   │   └── userController.js  # Lógica do controlador de usuário
-│   │   ├── routes/                # Definição das rotas
-│   │   │   └── user.js            # Rotas relacionadas ao usuário
-│   │   └── server.js              # Arquivo principal do servidor Node.js
-│   └── frontend/                  # Frontend da aplicação
-│       ├── css/                   # Arquivos de estilo CSS
-│       │   └── style.css          # Estilos principais da aplicação
-│       ├── js/                    # Scripts JavaScript
-│       │   └── script.js          # Lógica do frontend
-│       └── index.html             # Página principal da aplicação
-├── README.md                      # Documentação do projeto
+monitor-habitos/
+├── backend/                           # Backend da aplicação
+│   ├── controllers/                   # Lógica dos controladores
+│   ├── middleware/                    # Middlewares personalizados (ex: autenticação)
+│   ├── models/                        # Modelos de dados (ex: usuário, hábitos)
+│   ├── node_modules/                  # Dependências do Node.js
+│   ├── public/                        # Arquivos públicos (acessíveis no navegador)
+│   │   ├── css/                       # Estilos CSS da aplicação
+│   │   ├── images/                    # Imagens usadas no projeto (ex: banner)
+│   │   └── script/                    # Scripts e páginas HTML
+│   │       ├── dashboard.js
+│   │       ├── login.js
+│   │       ├── register.js
+│   │       ├── dashboard.html
+│   │       ├── index.html
+│   │       ├── login.html
+│   │       └── register.html
+│   ├── routes/                        # Arquivos de definição de rotas da API
+│   │   ├── habit.js
+│   │   └── user.js
+│   ├── .env                           # Variáveis de ambiente (não versionar em público)
+│   ├── package.json                   # Metadados e dependências do projeto
+│   ├── package-lock.json              # Lockfile com versões exatas das dependências
+│   └── server.js                      # Arquivo principal do servidor Node.js
+├── README.md                          # Documentação do projeto
+
 
 ```
 ## 🚀 Como Executar o Projeto
