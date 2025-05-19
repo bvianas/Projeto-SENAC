@@ -32,12 +32,12 @@ Desenvolver uma aplicação web com frontend em HTML, CSS e JavaScript e backend
 Projeto-SENAC/
 │
 ├── frontend/                 # Interface inicial do usuário
-│   └── index.html
+│ 
 │
 ├── monitor-habitos/         # Diretório principal do backend
 │   ├── backend/
 │   │   ├── controllers/
-│   │   │   └── userController.js   # Em desenvolvimento
+│   │   │   └── userController.js   
 │   │   ├── routes/
 │   │   │   └── user.js             # Rotas de usuário
 │   │   ├── server.js               # Arquivo principal do servidor
