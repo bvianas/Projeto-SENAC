@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Habit Tracker</title>
+  <title>Monitoramento de Hábitos</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
@@ -23,17 +23,17 @@
     <!-- ─── Coluna 1 • Sidebar de hábitos ─── -->
     <aside>
       <div class="reminder">
-        <label for="reminderTime">⏰ Daily reminder</label>
+        <label for="reminderTime">⏰ Lembrete Diário</label>
         <input type="time" id="reminderTime" />
-        <button id="setReminder">Save</button>
+        <button id="setReminder">Salvar</button>
       </div>
 
-      <h4>Habits</h4>
+      <h4>Hábitos</h4>
       <ul id="habitList"></ul>
 
       <div class="add-habit">
-        <input id="newHabit" type="text" placeholder="New habit…" />
-        <button id="addHabit">Add</button>
+        <input id="newHabit" type="text" placeholder="Novo hábito" />
+        <button id="addHabit">Adicionar</button>
       </div>
 
    </aside>
@@ -41,15 +41,15 @@
     <!-- ─── Coluna 2 • Conteúdo principal ─── -->
     <main>
       <div class="controls">
-        <label>📅 Month:
+        <label>📅 Mês:
           <input type="month" id="monthPicker" />
         </label>
-        <button id="shareBtn">Share progress</button>
-        <div class="points">⭐ Points: <span id="points">0</span></div>
+        <button id="shareBtn">Compartilhar</button>
+        <div class="points">⭐ Pontos: <span id="points">0</span></div>
       </div>
 
       <div class="table-wrap">
-        <div class="month-title" id="monthTitle">January</div>
+        <div class="month-title" id="monthTitle">Janeiro</div>
         <table id="habitTable">
           <thead></thead>
           <tbody></tbody>

@@ -52,9 +52,9 @@ function renderSidebar() {
 }
 
 function buildHeader() {
-  thead.innerHTML = `<tr><th>Date</th><th>Day</th>${habits
+  thead.innerHTML = `<tr><th>Data</th><th></th>${habits
     .map((h) => `<th>${h}</th>`) 
-    .join("")}<th>Progress</th></tr>`;
+    .join("")}<th>Progresso</th></tr>`;
 }
 
 function updateRowProgress(tr) {
@@ -67,9 +67,10 @@ function updateRowProgress(tr) {
 
 // =================== BUILD TABLE ===================
 function buildTable() {
-  monthTitle.textContent = new Date(year, month).toLocaleString("en", {
-    month: "long",
-  });
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+    const mes = capitalize(new Date(year, month).toLocaleDateString("pt-BR", { month: "long" }));
+    monthTitle.textContent = mes;
+  
   buildHeader();
   tbody.innerHTML = "";
 
@@ -89,7 +90,8 @@ function buildTable() {
   while (d.getMonth() === month) {
     const key = String(d.getDate()).padStart(2, "0");
     if (!store[key]) store[key] = Array(habits.length).fill(false);
-    const weekday = d.toLocaleDateString("en", { weekday: "long" });
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+    const weekday = capitalize(d.toLocaleDateString("pt-BR", { weekday: "long" }));
     const cells = store[key]
       .map(
         (flag, i) =>
@@ -255,3 +257,34 @@ shareBtn.onclick = shareProgress;
     alert("Erro ao carregar hábitos. Você está logada?");
   }
 })();
+
+const reminderInp = document.getElementById("reminderTime");
+const saveRemBtn = document.getElementById("setReminder");
+
+// Salva o horário no localStorage
+saveRemBtn.onclick = () => {
+  const time = reminderInp.value;
+  if (time) {
+    localStorage.setItem("habitReminder", time);
+    alert(`Lembrete salvo para ${time}`);
+  }
+};
+
+function checkReminder() {
+  const reminderTime = localStorage.getItem("habitReminder");
+  if (!reminderTime) return;
+
+  const now = new Date();
+  const current = now.getHours().toString().padStart(2, "0") + ":" +
+                  now.getMinutes().toString().padStart(2, "0");
+
+  if (current === reminderTime) {
+    alert("⏰ Hora de praticar seus hábitos!");
+  }
+}
+
+// Verifica a cada minuto
+setInterval(checkReminder, 60 * 1000);
+
+const savedTime = localStorage.getItem("habitReminder");
+if (savedTime) reminderInp.value = savedTime;
