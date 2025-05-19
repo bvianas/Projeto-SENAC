@@ -10,5 +10,9 @@ router.post("/login", userController.login);
 router.get("/lembrete", auth, userController.getLembrete);
 router.put("/lembrete", auth, userController.setLembrete);
 
+router.get("/verificar-token", auth, (req, res) => {
+  res.sendStatus(200); // Se chegou aqui, o token é válido
+});
+
 module.exports = router;
 

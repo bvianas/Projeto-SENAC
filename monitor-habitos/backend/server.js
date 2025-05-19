@@ -1,6 +1,7 @@
 const express  = require("express");
 const mongoose = require("mongoose");
 const cors     = require("cors");
+const path = require("path")
 require("dotenv").config();
 
 const userRoutes  = require("./routes/user");
@@ -8,10 +9,12 @@ const habitRoutes = require("./routes/habit");
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 /* ───────── CORS – permite o front local ───────── */
 const allowedOrigins = [
-  "http://localhost:5500",
-  "http://127.0.0.1:5500"
+  "http://localhost:3001",
+  "http://127.0.0.1:3001"
 ];
 app.use(
   cors({
@@ -38,3 +41,5 @@ mongoose
   .catch(err => console.error("Erro ao conectar ao MongoDB", err));
 
 app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
+
+

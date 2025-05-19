@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verificando autenticação...</title>
+</head>
+<body>
+  <script>
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = "/login.html";
+    } else {
+      fetch("/verificar-token", {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }).then(res => {
+        if (res.ok) {
+          window.location.href = "/dashboard.html";
+        } else {
+          window.location.href = "/login.html";
+        }
+      }).catch(() => {
+        window.location.href = "/login.html";
+      });
+    }
+  </script>
+</body>
+</html>
