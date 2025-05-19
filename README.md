@@ -1,4 +1,4 @@
-<img src="./monitor-habitos/backend/public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
+<img src="./backend/public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
 
 
 ## 📌 Visão Geral
@@ -48,10 +48,6 @@ monitor-habitos/
 │   ├── routes/                        # Arquivos de definição de rotas da API
 │   │   ├── habit.js
 │   │   └── user.js
-│   ├── .env                           # Variáveis de ambiente (não versionar em público)
-│   ├── package.json                   # Metadados e dependências do projeto
-│   ├── package-lock.json              # Lockfile com versões exatas das dependências
-│   └── server.js                      # Arquivo principal do servidor Node.js
 ├── README.md                          # Documentação do projeto
 
 
