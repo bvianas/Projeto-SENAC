@@ -1,4 +1,4 @@
-<img src="./frontend/src/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
+<img src="./public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
 
 
 
@@ -30,19 +30,21 @@ Desenvolver uma aplicação web com frontend em HTML, CSS e JavaScript e backend
 
 ```bash
 Projeto-SENAC/
-│
-├── frontend/                 # Interface inicial do usuário
-│ 
-│
-├── monitor-habitos/         # Diretório principal do backend
-│   ├── backend/
-│   │   ├── controllers/
-│   │   │   └── userController.js   
-│   │   ├── routes/
-│   │   │   └── user.js             # Rotas de usuário
-│   │   ├── server.js               # Arquivo principal do servidor
-│
-├── README.md                # Este arquivo
+├── monitor-habitos/               # Diretório principal do projeto
+│   ├── backend/                   # Backend da aplicação
+│   │   ├── controllers/           # Controladores das rotas
+│   │   │   └── userController.js  # Lógica do controlador de usuário
+│   │   ├── routes/                # Definição das rotas
+│   │   │   └── user.js            # Rotas relacionadas ao usuário
+│   │   └── server.js              # Arquivo principal do servidor Node.js
+│   └── frontend/                  # Frontend da aplicação
+│       ├── css/                   # Arquivos de estilo CSS
+│       │   └── style.css          # Estilos principais da aplicação
+│       ├── js/                    # Scripts JavaScript
+│       │   └── script.js          # Lógica do frontend
+│       └── index.html             # Página principal da aplicação
+├── README.md                      # Documentação do projeto
+
 ```
 ## 🚀 Como Executar o Projeto
 
