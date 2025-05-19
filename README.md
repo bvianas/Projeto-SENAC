@@ -1,4 +1,4 @@
-<img src="./backend/public/images/banner-readme.md.png" alt="Banner da Plataforma de Monitoramento de Hábitos" width="800"/>
+![Banner da Plataforma de Monitoramento de Hábitos](https://raw.githubusercontent.com/bvianas/Projeto-SENAC/main/monitor-habitos/backend/public/images/banner-readme.md.png)
 
 
 ## 📌 Visão Geral
