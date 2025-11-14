@@ -66,38 +66,81 @@ Antes de começar, é preciso ter as seguintes ferramentas instaladas:
 
 ---
 
-### 📥 Passo a Passo
+## 🚀 Como Executar o Projeto
+
+### 📋 Pré-requisitos
+
+Antes de começar, é necessário ter as seguintes ferramentas instaladas na sua máquina:
+
+* [Node.js](https://nodejs.org/)
+* [Git](https://git-scm.com/) (opcional, para clonar o repositório)
+* Um editor de código como [Visual Studio Code](https://code.visualstudio.com/)
+* Um navegador moderno (ex: Google Chrome)
+
+---
+
+### 🧱 Instale o MongoDB antes de tudo!
+
+O projeto depende de uma instância do **MongoDB** rodando localmente.
+
+> 👉 Para instalar o Mongo localmente, siga o guia oficial conforme seu sistema operacional:
+> 🔗 **[https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/)**
+
+Após a instalação, certifique-se de que o Mongo está rodando:
+
+```bash
+# Linux / macOS
+sudo systemctl start mongod
+
+# Windows (CMD)
+net start MongoDB
+```
+
+---
+
+### 📥 Passo a Passo para Rodar o Projeto
 
 #### 1. Clone o repositório
-
-Abra o terminal e execute:
 
 ```bash
 git clone https://github.com/bvianas/Projeto-SENAC.git
 ```
 
 #### 2. Acesse a pasta do projeto
+
 ```bash
 cd Projeto-SENAC
 ```
+
 #### 3. Acesse o diretório do backend
+
 ```bash
 cd monitor-habitos/backend
 ```
-#### 4. Instale as dependências do projeto
+
+#### 4. Instale as dependências
+
 ```bash
 npm install
 ```
+
 #### 5. Inicie o servidor backend
+
 ```bash
 node server.js
 ```
 
-### Se tudo estiver correto, a seguinte mensagem aparecerá no terminal:
+### ✅ Se tudo estiver correto, o terminal mostrará:
 
 ```bash
-Servidor rodando em http://localhost:3000
+Servidor rodando na porta 3001
+MongoDB conectado
 ```
+
+---
+
+✨ Agora é só abrir `localhost:3001/` no navegador, fazer um cadastro e começar a usar o monitor de hábitos! 
+
 
 ## Referências 🛠️
 

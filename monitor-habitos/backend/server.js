@@ -13,9 +13,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* ───────── CORS – permite o front local ───────── */
 const allowedOrigins = [
-  "http://localhost:3001",
-  "http://127.0.0.1:3001"
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "null" // abrir direto do arquivo (file://)
 ];
+
+
 app.use(
   cors({
     origin(origin, cb) {
@@ -41,5 +46,3 @@ mongoose
   .catch(err => console.error("Erro ao conectar ao MongoDB", err));
 
 app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
-
-
