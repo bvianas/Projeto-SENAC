@@ -1,7 +1,7 @@
 const express  = require("express");
 const mongoose = require("mongoose");
 const cors     = require("cors");
-const path = require("path")
+const path = require("path");
 require("dotenv").config();
 
 const userRoutes  = require("./routes/user");
@@ -13,19 +13,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* ───────── CORS – permite o front local ───────── */
 const allowedOrigins = [
+  "http://localhost:3001",
+  "http://127.0.0.1:3001",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "null" // abrir direto do arquivo (file://)
+  "null"
 ];
-
 
 app.use(
   cors({
     origin(origin, cb) {
-      // permite Postman (sem Origin) ou origens da lista
-      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+      if (!origin || allowedOrigins.includes(origin)) {
+        return cb(null, true);
+      }
       cb(new Error("Not allowed by CORS"));
     },
     credentials: true
