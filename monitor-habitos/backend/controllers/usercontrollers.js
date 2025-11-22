@@ -69,3 +69,30 @@ exports.setLembrete = async (req, res) => {
     res.status(500).json({ erro: "Erro ao atualizar lembrete." });
   }
 };
+
+// Resetar senha 
+exports.resetPassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    if (!email || !newPassword) {
+      return res
+        .status(400)
+        .json({ erro: "Email e nova senha são obrigatórios." });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ erro: "Usuário não encontrado." });
+    }
+
+    const hashed = await bcrypt.hash(newPassword, 10);
+    user.senha = hashed;
+    await user.save();
+
+    return res.json({ mensagem: "Senha redefinida com sucesso!" });
+  } catch (err) {
+    console.error("Erro ao redefinir senha:", err);
+    return res.status(500).json({ erro: "Erro ao redefinir senha." });
+  }
+};
