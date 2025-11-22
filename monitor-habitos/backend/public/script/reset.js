@@ -31,17 +31,16 @@ document.getElementById("resetForm").addEventListener("submit", async function (
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.message || "Erro ao redefinir senha.");
+      alert(data.erro || "Erro ao redefinir senha.");
       return;
     }
 
-    alert("Senha redefinida com sucesso!");
+    alert(data.mensagem || "Senha redefinida com sucesso!");
 
     localStorage.removeItem("resetEmail");
-
-    // volta pro login (na raiz)
     window.location.href = "/login.html";
   } catch (err) {
     alert("Erro de conexão com o servidor.");
   }
 });
+
