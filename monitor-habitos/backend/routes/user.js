@@ -5,9 +5,8 @@ const auth = require("../middleware/middleware/auth");
 
 router.post("/register", userController.register);
 router.post("/login", userController.login);
-
-// ✅ NOVA ROTA RESET SENHA (não precisa auth porque é esqueci senha)
 router.post("/reset-password", userController.resetPassword);
+
 
 // ⏰ NOVOS ENDPOINTS DE LEMBRETE
 router.get("/lembrete", auth, userController.getLembrete);
