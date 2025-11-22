@@ -1,4 +1,4 @@
-document.getElementById("forgotForm").addEventListener("submit", function(e) {
+document.getElementById("forgotForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
@@ -7,6 +7,8 @@ document.getElementById("forgotForm").addEventListener("submit", function(e) {
     alert("Por favor, informe seu e-mail.");
     return;
   }
+
+  localStorage.setItem("resetEmail", email);
 
   alert(`Um link de redefinição foi enviado para ${email} (simulação).`);
 
