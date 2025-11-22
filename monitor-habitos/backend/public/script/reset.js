@@ -10,5 +10,5 @@ document.getElementById("resetForm").addEventListener("submit", async function(e
   }
 
   alert("Senha redefinida com sucesso! (simulação)");
-  window.location.href = "login.html";
+  window.location.href = "/login.html";
 });
