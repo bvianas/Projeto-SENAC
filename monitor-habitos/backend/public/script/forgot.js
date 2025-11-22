@@ -9,7 +9,7 @@ document.getElementById("forgotForm").addEventListener("submit", function(e) {
   }
 
   // Simulação do envio do link
-  alert(Um link de redefinição foi enviado para ${email} (simulação).);
+  alert(`Um link de redefinição foi enviado para ${email} (simulação).`);
   
   // Redireciona para a tela de redefinição
   window.location.href = "reset.html";
