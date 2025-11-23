@@ -1,4 +1,4 @@
-![Banner da Plataforma de Monitoramento de Hábitos](monitor-habitos/backend/public/images/banner-readme.md.png)
+![Banner da Plataforma de Monitoramento de Hábitos](https://github.com/bvianas/Projeto-SENAC/blob/main/monitor-habitos/backend/public/images/banner-readme.md.png)
 
 
 ## 📌 Visão Geral
