@@ -66,6 +66,8 @@ blockquote{margin:0 0 2rem;padding-left:1rem;border-left:4px solid var(--border)
 .controls button{padding:.4rem .8rem;border:none;border-radius:4px;background:var(--accent);color:#fff;font-size:.85rem;cursor:pointer;}
 .controls button:hover{opacity:.9;}
 .points{margin-left:auto;font-weight:600;}
+.controls .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--border);}
+.controls .btn-outline:hover{background:#f1f1f1;}
 
 /* ───── Tabela ───── */
 .table-wrap{overflow-x:auto;}

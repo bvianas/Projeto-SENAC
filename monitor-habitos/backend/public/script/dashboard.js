@@ -31,6 +31,12 @@ const weeklyPct = document.getElementById("weeklyPct");
 const monthlyPct = document.getElementById("monthlyPct");
 const pointsEl = document.getElementById("points");
 const shareBtn = document.getElementById("shareBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// Redireciona se n�o houver token salvo
+if (!localStorage.getItem("token")) {
+  window.location.href = "login.html";
+}
 
 // =================== STATE ===================
 let year = new Date().getFullYear();
@@ -65,6 +71,14 @@ function updateRowProgress(tr) {
   )}%`;
 }
 
+// Formata a data no padrao YYYY-MM-DD sem quebras de linha ou espacos extras
+function formatDate(y, mZeroBased, day) {
+  return `${y}-${String(mZeroBased + 1).padStart(2, "0")}-${String(day).padStart(
+    2,
+    "0"
+  )}`;
+}
+
 // =================== BUILD TABLE ===================
 function buildTable() {
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -78,8 +92,12 @@ function buildTable() {
   habitDocs.forEach((h, idx) => {
     h.diasConcluidos.forEach((d) => {
       const date = new Date(d);
-      if (date.getFullYear() === year && date.getMonth() === month) {
-        const key = String(date.getDate()).padStart(2, "0");
+      const y = date.getUTCFullYear();
+      const m = date.getUTCMonth();
+      const day = date.getUTCDate();
+
+      if (y === year && m === month) {
+        const key = String(day).padStart(2, "0");
         if (!store[key]) store[key] = Array(habits.length).fill(false);
         store[key][idx] = true;
       }
@@ -88,16 +106,18 @@ function buildTable() {
 
   const d = new Date(year, month, 1);
   while (d.getMonth() === month) {
-    const key = String(d.getDate()).padStart(2, "0");
+    const dayNum = d.getDate();
+    const key = String(dayNum).padStart(2, "0");
     if (!store[key]) store[key] = Array(habits.length).fill(false);
     const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
     const weekday = capitalize(d.toLocaleDateString("pt-BR", { weekday: "long" }));
+    const dateStr = formatDate(year, month, dayNum);
     const cells = store[key]
       .map(
         (flag, i) =>
-          `<td><input type="checkbox" data-date="${year}-${
-            month + 1
-          }-${key}" data-idx="${i}" ${flag ? "checked" : ""}></td>`
+          `<td><input type="checkbox" data-date="${dateStr}" data-idx="${i}" ${
+            flag ? "checked" : ""
+          }></td>`
       )
       .join("");
     const tr = document.createElement("tr");
@@ -246,6 +266,10 @@ tbody.oninput = async (e) => {
 };
 
 shareBtn.onclick = shareProgress;
+logoutBtn.onclick = () => {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+};
 
 // =================== Init ===================
 (async function init() {

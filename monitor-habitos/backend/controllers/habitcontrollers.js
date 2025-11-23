@@ -34,7 +34,13 @@ exports.concluirHabito = async (req, res) => {
       return res.status(404).json({ erro: "Hábito não encontrado." });
     }
 
-    const data = new Date(req.body.data);
+    // Garante que a data recebida seja interpretada como UTC para evitar fuso quebrando o dia
+    const toUtcDate = (dateStr) => {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      return new Date(Date.UTC(y, m - 1, d));
+    };
+
+    const data = toUtcDate(req.body.data);
     const dataFormatada = data.toISOString().slice(0, 10);
 
     if (req.method === "PUT") {
@@ -72,7 +78,12 @@ exports.desmarcarHabito = async (req, res) => {
       return res.status(404).json({ erro: "Hábito não encontrado." });
     }
 
-    const dataFormatada = new Date(req.body.data).toISOString().slice(0, 10);
+    const toUtcDate = (dateStr) => {
+      const [y, m, d] = dateStr.split("-").map(Number);
+      return new Date(Date.UTC(y, m - 1, d));
+    };
+
+    const dataFormatada = toUtcDate(req.body.data).toISOString().slice(0, 10);
 
     habito.diasConcluidos = habito.diasConcluidos.filter(
       (d) => new Date(d).toISOString().slice(0, 10) !== dataFormatada

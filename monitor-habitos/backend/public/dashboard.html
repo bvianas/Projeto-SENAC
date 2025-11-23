@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="css/dashboard.css" />
 </head>
 <body>
-  <!-- ───── Headline fora do container ───── -->
   <header class="page-header">
     <h1>Monitoramento de Hábitos</h1>
     <blockquote>
@@ -20,10 +19,9 @@
   </header>
 
   <div class="wrapper">
-    <!-- ─── Coluna 1 • Sidebar de hábitos ─── -->
     <aside>
       <div class="reminder">
-        <label for="reminderTime">⏰ Lembrete Diário</label>
+        <label for="reminderTime">Lembrete Diário</label>
         <input type="time" id="reminderTime" />
         <button id="setReminder">Salvar</button>
       </div>
@@ -35,17 +33,16 @@
         <input id="newHabit" type="text" placeholder="Novo hábito" />
         <button id="addHabit">Adicionar</button>
       </div>
-
    </aside>
 
-    <!-- ─── Coluna 2 • Conteúdo principal ─── -->
     <main>
       <div class="controls">
-        <label>📅 Mês:
+        <label>Mês:
           <input type="month" id="monthPicker" />
         </label>
         <button id="shareBtn">Compartilhar</button>
-        <div class="points">⭐ Pontos: <span id="points">0</span></div>
+        <div class="points">Pontos: <span id="points">0</span></div>
+        <button id="logoutBtn" class="btn-outline">Sair</button>
       </div>
 
       <div class="table-wrap">
@@ -57,7 +54,6 @@
       </div>
     </main>
 
-    <!-- ─── Coluna 3 • Progresso semanal / mensal ─── -->
     <aside class="stats-col">
       <section class="stats">
         <h3>Visualização do progresso</h3>
