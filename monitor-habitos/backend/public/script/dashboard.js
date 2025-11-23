@@ -144,9 +144,26 @@ function buildStats(store) {
   setBar(monthlyBar, monthlyPct, pctMonth);
 
   const today = new Date();
-  const weekIdx = Math.floor((today.getDate() - 1) / 7) + 1;
+  const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+  const daysInStore = Object.keys(store).map(Number);
+  const referenceDate = isCurrentMonth
+    ? today
+    : daysInStore.length
+    ? new Date(year, month, Math.max(...daysInStore))
+    : new Date(year, month, 1);
+  const startOfWeek = new Date(referenceDate);
+  startOfWeek.setHours(0, 0, 0, 0);
+  startOfWeek.setDate(referenceDate.getDate() - referenceDate.getDay()); // domingo
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6); // s?bado
+
   const weekRows = Object.entries(store)
-    .filter(([d]) => Math.floor((+d - 1) / 7) + 1 === weekIdx)
+    .filter(([d]) => {
+      const dayNum = +d;
+      const date = new Date(year, month, dayNum);
+      date.setHours(0, 0, 0, 0);
+      return date >= startOfWeek && date <= endOfWeek;
+    })
     .map(([, r]) => r);
   const weekTotal = weekRows.length * habits.length;
   const weekChecked = weekRows.flat().filter(Boolean).length;
@@ -156,19 +173,20 @@ function buildStats(store) {
   const weekTotals = habits.map((_, i) =>
     weekRows.reduce((s, row) => s + (row[i] ? 1 : 0), 0)
   );
-const max = Math.max(...weekTotals);
+  const max = Math.max(...weekTotals);
   const min = Math.min(...weekTotals);
   const best = weekTotals.findIndex((v) => v === max && max > 0);
   const worst = weekTotals.findIndex((v) => v === min && min < max);
 
-  let insights = `<p>📈 <strong>Sua semana ${weekIdx}</strong></p><ul>`;
+  const fmt = (d) => d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+  const weekLabel = `${fmt(startOfWeek)} - ${fmt(endOfWeek)}`;
+  let insights = `<p><strong>Sua semana (${weekLabel})</strong></p><ul>`;
   if (best !== -1) insights += `<li>Parabéns pelo hábito <b>${habits[best]}</b>!</li>`;
   if (worst !== -1) insights += `<li>Dê mais atenção a <b>${habits[worst]}</b>.</li>`;
   if (best === -1 && worst === -1) insights += `<li>Nenhum hábito foi concluído ainda esta semana.</li>`;
   insights += `</ul>`;
   weeklyReport.innerHTML = insights;
 }
-
 
 // =================== API-driven CRUD ===================
 async function fetchHabits() {
